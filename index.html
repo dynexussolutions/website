@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynexus Solutions | Professional Tech Services</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text: #334155;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: var(--text);
+            background-color: var(--light);
+        }
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 2.5rem; letter-spacing: -1px; }
+        .subtitle { color: #94a3b8; margin-top: 0.5rem; }
+        
+        .container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .service-card h3 { margin-top: 0; color: var(--dark); }
+        
+        .cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: #e2e8f0;
+            border-radius: 12px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .btn:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dynexus Solutions</h1>
+        <div class="subtitle">Advanced Technical Consulting & Implementation</div>
+    </header>
+
+    <div class="container">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Home Lab & Server Setup</h3>
+                <p>Custom Proxmox/Unraid configuration, Docker containerization, and self-hosted cloud solutions.</p>
+            </div>
+            <div class="service-card">
+                <h3>Network Optimization</h3>
+                <p>Advanced home networking, firewall configuration (pfSense/OPNsense), and secure VPN deployment.</p>
+            </div>
+            <div class="service-card">
+                <h3>Hardware Solutions</h3>
+                <p>Custom PC builds, workstation optimization, and hardware diagnostics/repair.</p>
+            </div>
+            <div class="service-card">
+                <h3>Local AI Implementation</h3>
+                <p>Setup and configuration of local LLMs (Ollama, etc.) and privacy-focused AI workflows.</p>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>Ready to upgrade your systems?</h2>
+            <p>Contact us for a consultation.</p>
+            <a href="mailto:info@dynexussolutions.com" class="btn">Email Us</a>
+        </div>
+    </div>
+
+</body>
+</html>
