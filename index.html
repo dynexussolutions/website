@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynexus Solutions | Professional Tech Services</title>
+    <title>Dynexus Solutions | Transform Your Business Technology</title>
+    <meta name="description" content="Professional technology solutions that help businesses work smarter, save costs, and grow faster.">
     <style>
         :root {
             --primary: #2563eb;
             --primary-dark: #1e40af;
-            --accent: #0891b2;
-            --dark: #0f172a;
-            --dark-light: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --text: #334155;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
         }
 
         * {
@@ -23,72 +25,47 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
-            line-height: 1.7;
-            color: var(--text);
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%239C92AC" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>') repeat;
-            opacity: 0.4;
-        }
-
-        h1 {
-            font-size: 3rem;
-            letter-spacing: -2px;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .subtitle {
-            color: #94a3b8;
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Navigation */
+        /* Header/Navigation */
         nav {
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: var(--light);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
             gap: 2rem;
-            padding: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-wrap: wrap;
         }
 
         nav a {
-            color: var(--text);
+            color: var(--dark);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
@@ -96,437 +73,651 @@
             color: var(--primary);
         }
 
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
         /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 0 2rem;
         }
 
         section {
-            margin-bottom: 5rem;
+            padding: 5rem 2rem;
         }
 
-        h2 {
+        .section-title {
             font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
             text-align: center;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
         }
 
-        .section-intro {
+        .section-subtitle {
             text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray-600);
             max-width: 700px;
             margin: 0 auto 3rem;
-            font-size: 1.1rem;
-            color: var(--gray);
+        }
+
+        /* Problem/Solution Section */
+        .problems {
+            background: var(--gray-50);
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .problem-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .checkmark {
+            color: var(--accent);
+            font-weight: bold;
         }
 
         /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .service-card {
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: all 0.3s;
             border-top: 4px solid var(--primary);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
         }
 
-        .service-card h3 {
-            color: var(--dark);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .service-card ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .service-card li {
-            padding: 0.4rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .service-card li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        /* Tech Stack */
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .tech-badge {
-            background: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 600;
-            color: var(--text);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-        }
-
-        .tech-badge:hover {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* Stats Section */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .stat-number {
+        .service-icon {
             font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary);
+            margin-bottom: 1.5rem;
             display: block;
         }
 
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-top: 0.5rem;
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .service-card p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-benefits {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .service-benefits li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--gray-600);
+        }
+
+        .service-benefits li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Process Section */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+
+        .process-step p {
+            color: var(--gray-600);
+        }
+
+        /* Trust Section */
+        .trust {
+            background: var(--gray-50);
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .trust-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .trust-text {
+            font-weight: 600;
+            color: var(--gray-900);
         }
 
         /* CTA Section */
         .cta {
-            text-align: center;
-            margin-top: 5rem;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 16px;
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
             color: white;
-            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.3);
+            text-align: center;
+            padding: 5rem 2rem;
         }
 
         .cta h2 {
-            color: white;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
         }
 
-        .btn {
-            display: inline-block;
+        /* Testimonials */
+        .testimonials {
             background: white;
-            color: var(--primary);
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--gray-50);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .testimonial-role {
+            color: var(--gray-600);
+            font-size: 0.95rem;
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
+            background: var(--gray-900);
             color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
         }
 
         footer p {
-            color: #94a3b8;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 2rem; }
-            .services-grid { grid-template-columns: 1fr; }
-            nav ul { gap: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 2rem; }
+            nav ul { display: none; }
+            .hero-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Dynexus Solutions</h1>
-        <div class="subtitle">Advanced Technical Consulting & Systems Integration</div>
-    </header>
-
     <nav>
-        <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#expertise">Expertise</a></li>
-            <li><a href="#tech">Technology</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="container">
+            <div class="logo">Dynexus Solutions</div>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">How It Works</a></li>
+                <li><a href="#benefits">Results</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <div class="container">
+    <section class="hero">
+        <h1>Technology That Works For Your Business</h1>
+        <p class="subtitle">Stop wrestling with IT problems. Get reliable, professional technology solutions that save time, reduce costs, and help you grow.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Get a Free Consultation</a>
+            <a href="#services" class="btn btn-secondary">See How We Help</a>
+        </div>
+    </section>
 
-        <section id="services">
-            <h2>Professional Services</h2>
-            <p class="section-intro">Comprehensive technical solutions for businesses and advanced home labs. From infrastructure design to automation and optimization.</p>
+    <section class="problems">
+        <div class="container">
+            <h2 class="section-title">Common Business Technology Challenges</h2>
+            <p class="section-subtitle">We help businesses solve these everyday problems</p>
+
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">💰</div>
+                    <h3>High IT Costs</h3>
+                    <p>Paying too much for outdated systems or expensive service contracts that don't deliver value.</p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">⏰</div>
+                    <h3>Wasted Time</h3>
+                    <p>Your team spending hours on repetitive tasks that could be automated or systems that frequently break down.</p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">🔒</div>
+                    <h3>Security Concerns</h3>
+                    <p>Worried about data breaches, losing important files, or not having secure backups in place.</p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">📱</div>
+                    <h3>Remote Work Struggles</h3>
+                    <p>Difficulty accessing files, managing teams remotely, or keeping everyone connected and productive.</p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">📊</div>
+                    <h3>Lack of Visibility</h3>
+                    <p>Can't track performance, monitor systems, or make data-driven decisions without proper tools.</p>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">🤝</div>
+                    <h3>No Reliable Support</h3>
+                    <p>Can't get help when you need it, or current IT provider doesn't understand your business needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">How We Help Your Business Succeed</h2>
+            <p class="section-subtitle">Practical technology solutions designed for growing businesses</p>
 
             <div class="services-grid">
 
                 <div class="service-card">
-                    <h3>🖥️ Server Infrastructure</h3>
-                    <p>Enterprise-grade server setup and management for businesses and enthusiasts.</p>
-                    <ul>
-                        <li>Debian/Ubuntu server deployment</li>
-                        <li>Docker containerization (30+ services)</li>
-                        <li>PostgreSQL database administration</li>
-                        <li>n8n workflow automation</li>
-                        <li>Media server setup (Plex, Jellyfin)</li>
-                        <li>Reverse proxy & SSL configuration</li>
+                    <span class="service-icon">🖥️</span>
+                    <h3>Business Server Solutions</h3>
+                    <p>Reliable, secure servers that keep your business running 24/7. Access your files from anywhere, never worry about downtime.</p>
+                    <ul class="service-benefits">
+                        <li>Always-on file access for your team</li>
+                        <li>Automatic backups protect your data</li>
+                        <li>Work from anywhere securely</li>
+                        <li>Scale as your business grows</li>
                     </ul>
                 </div>
 
                 <div class="service-card">
-                    <h3>💾 Storage Solutions</h3>
-                    <p>Advanced storage architecture with high availability and redundancy.</p>
-                    <ul>
-                        <li>NAS setup (OpenMediaVault)</li>
-                        <li>NFS/SMB network shares</li>
-                        <li>MergerFS unified storage pools</li>
-                        <li>Backup automation (Duplicacy)</li>
-                        <li>RAID configuration</li>
-                        <li>Multi-device storage clustering</li>
+                    <span class="service-icon">☁️</span>
+                    <h3>Cloud Migration & Setup</h3>
+                    <p>Move away from expensive subscriptions. We build private cloud solutions that you own and control, saving thousands annually.</p>
+                    <ul class="service-benefits">
+                        <li>Cut subscription costs by 60-80%</li>
+                        <li>Complete control of your data</li>
+                        <li>No monthly vendor fees</li>
+                        <li>Better performance and reliability</li>
                     </ul>
                 </div>
 
                 <div class="service-card">
-                    <h3>🔐 Network & Security</h3>
-                    <p>Secure network design with modern authentication and monitoring.</p>
-                    <ul>
-                        <li>VPN deployment (WireGuard)</li>
-                        <li>Firewall configuration</li>
-                        <li>SSL/TLS certificate management</li>
-                        <li>Authelia authentication proxy</li>
-                        <li>Network troubleshooting</li>
-                        <li>IoT device integration</li>
+                    <span class="service-icon">🤖</span>
+                    <h3>Workflow Automation</h3>
+                    <p>Stop manual data entry and repetitive tasks. We automate your processes so your team can focus on what matters.</p>
+                    <ul class="service-benefits">
+                        <li>Save 10-20 hours per week</li>
+                        <li>Eliminate human error</li>
+                        <li>Connect all your business tools</li>
+                        <li>Get real-time notifications</li>
                     </ul>
                 </div>
 
                 <div class="service-card">
-                    <h3>🤖 AI & Automation</h3>
-                    <p>Local AI deployment and intelligent workflow automation.</p>
-                    <ul>
-                        <li>Claude API integration</li>
-                        <li>OpenRouter configuration</li>
-                        <li>LLM data pipelines</li>
-                        <li>Python automation scripts</li>
-                        <li>n8n workflow design</li>
-                        <li>API integration & webhooks</li>
+                    <span class="service-icon">🔐</span>
+                    <h3>Security & Backup Solutions</h3>
+                    <p>Protect your business from ransomware, data loss, and security breaches. Sleep better knowing your data is safe.</p>
+                    <ul class="service-benefits">
+                        <li>Automatic daily backups</li>
+                        <li>Ransomware protection</li>
+                        <li>Secure remote access</li>
+                        <li>Disaster recovery plan</li>
                     </ul>
                 </div>
 
                 <div class="service-card">
-                    <h3>📊 Monitoring & Analytics</h3>
-                    <p>Real-time system monitoring and performance optimization.</p>
-                    <ul>
-                        <li>Grafana dashboards</li>
-                        <li>InfluxDB time-series data</li>
-                        <li>Portainer container management</li>
-                        <li>Cockpit system administration</li>
-                        <li>Glances monitoring</li>
-                        <li>Performance tuning</li>
+                    <span class="service-icon">📊</span>
+                    <h3>Business Intelligence & Monitoring</h3>
+                    <p>See what's happening in your business in real-time. Make better decisions with clear dashboards and reports.</p>
+                    <ul class="service-benefits">
+                        <li>Real-time performance tracking</li>
+                        <li>Custom business dashboards</li>
+                        <li>Automated reporting</li>
+                        <li>Spot problems before they grow</li>
                     </ul>
                 </div>
 
                 <div class="service-card">
-                    <h3>🏠 Smart Home Integration</h3>
-                    <p>Unified smart home automation and device management.</p>
-                    <ul>
-                        <li>Home Assistant setup</li>
-                        <li>Matter server configuration</li>
-                        <li>Device automation</li>
-                        <li>Voice assistant integration</li>
-                        <li>Energy monitoring</li>
-                        <li>Custom dashboards</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <h3>📥 Download & Media Management</h3>
-                    <p>Complete media automation and management stack.</p>
-                    <ul>
-                        <li>Sonarr/Radarr setup</li>
-                        <li>Usenet configuration (SABnzbd)</li>
-                        <li>Torrent clients</li>
-                        <li>Prowlarr indexer management</li>
-                        <li>Lidarr music automation</li>
-                        <li>Audiobookshelf library</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <h3>💻 System Administration</h3>
-                    <p>Professional Linux system administration and troubleshooting.</p>
-                    <ul>
-                        <li>System optimization</li>
-                        <li>Service management (systemd)</li>
-                        <li>Filesystem repair & recovery</li>
-                        <li>SSH configuration & hardening</li>
-                        <li>Cron job automation</li>
-                        <li>Package management</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <h3>🔧 Hardware & Troubleshooting</h3>
-                    <p>Hardware diagnostics, upgrades, and repair services.</p>
-                    <ul>
-                        <li>Custom PC builds</li>
-                        <li>Hardware diagnostics</li>
-                        <li>RAM/BIOS troubleshooting</li>
-                        <li>Storage upgrade installation</li>
-                        <li>Network connectivity issues</li>
-                        <li>Component compatibility</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <h3>☁️ Self-Hosted Cloud</h3>
-                    <p>Privacy-focused cloud alternatives and file management.</p>
-                    <ul>
-                        <li>FileBrowser deployment</li>
-                        <li>Password management (Vaultwarden)</li>
-                        <li>Document storage solutions</li>
-                        <li>Remote access setup</li>
-                        <li>WebDAV configuration</li>
-                        <li>Sync services</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <h3>🌐 Web Services</h3>
-                    <p>Web server deployment and application hosting.</p>
-                    <ul>
-                        <li>Nginx/Apache configuration</li>
-                        <li>Static site hosting</li>
-                        <li>Web application deployment</li>
-                        <li>Domain configuration</li>
-                        <li>Professional website design</li>
-                        <li>API development</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <h3>📚 Documentation & Training</h3>
-                    <p>Comprehensive system documentation and knowledge transfer.</p>
-                    <ul>
-                        <li>Custom setup guides</li>
-                        <li>System architecture diagrams</li>
-                        <li>Markdown documentation</li>
-                        <li>Configuration backups</li>
-                        <li>Troubleshooting runbooks</li>
-                        <li>One-on-one training</li>
+                    <span class="service-icon">🔧</span>
+                    <h3>IT Support & Maintenance</h3>
+                    <p>Reliable support when you need it. We keep your systems running smoothly so you can focus on your business.</p>
+                    <ul class="service-benefits">
+                        <li>Fast response times</li>
+                        <li>Proactive system monitoring</li>
+                        <li>Regular updates and maintenance</li>
+                        <li>No confusing tech jargon</li>
                     </ul>
                 </div>
 
             </div>
-        </section>
-
-        <section id="expertise">
-            <h2>Experience & Expertise</h2>
-            <div class="stats">
-                <div class="stat-card">
-                    <span class="stat-number">30+</span>
-                    <span class="stat-label">Production Services</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">Multi-TB</span>
-                    <span class="stat-label">Storage Management</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Uptime Monitoring</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">Real-time</span>
-                    <span class="stat-label">Remote Support</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="tech">
-            <h2>Technology Stack</h2>
-            <p class="section-intro">Expertise across modern infrastructure and automation technologies</p>
-            <div class="tech-stack">
-                <span class="tech-badge">Docker</span>
-                <span class="tech-badge">Debian/Ubuntu</span>
-                <span class="tech-badge">PostgreSQL</span>
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">Bash/Shell</span>
-                <span class="tech-badge">n8n</span>
-                <span class="tech-badge">OpenMediaVault</span>
-                <span class="tech-badge">Nginx</span>
-                <span class="tech-badge">Git</span>
-                <span class="tech-badge">Home Assistant</span>
-                <span class="tech-badge">Grafana</span>
-                <span class="tech-badge">Portainer</span>
-                <span class="tech-badge">NFS/SMB</span>
-                <span class="tech-badge">SSH</span>
-                <span class="tech-badge">SSL/TLS</span>
-                <span class="tech-badge">MergerFS</span>
-                <span class="tech-badge">Systemd</span>
-                <span class="tech-badge">Cockpit</span>
-                <span class="tech-badge">Claude AI</span>
-                <span class="tech-badge">OpenRouter</span>
-            </div>
-        </section>
-
-        <div class="cta" id="contact">
-            <h2>Ready to Transform Your Infrastructure?</h2>
-            <p>Get professional consultation and implementation services tailored to your needs.</p>
-            <a href="mailto:walterdominicsmith@gmail.com" class="btn">Get Started</a>
         </div>
-    </div>
+    </section>
+
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Real Results for Your Business</h2>
+            <p class="section-subtitle">What you can expect when working with us</p>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-number">60-80%</span>
+                    <span class="benefit-label">Lower IT Costs</span>
+                </div>
+
+                <div class="benefit-item">
+                    <span class="benefit-number">24/7</span>
+                    <span class="benefit-label">System Uptime</span>
+                </div>
+
+                <div class="benefit-item">
+                    <span class="benefit-number">10-20hrs</span>
+                    <span class="benefit-label">Time Saved Weekly</span>
+                </div>
+
+                <div class="benefit-item">
+                    <span class="benefit-number">100%</span>
+                    <span class="benefit-label">Data Security</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <div class="container">
+            <h2 class="section-title">Simple, Straightforward Process</h2>
+            <p class="section-subtitle">Getting started is easy</p>
+
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Free Consultation</h3>
+                    <p>We discuss your business needs and current challenges. No pressure, no sales pitch.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Custom Plan</h3>
+                    <p>We create a clear plan tailored to your business, with transparent pricing and timelines.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Implementation</h3>
+                    <p>We handle everything with minimal disruption to your business. You stay in control.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Ongoing Support</h3>
+                    <p>We're here when you need us, with proactive monitoring and quick response times.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust">
+        <div class="container">
+            <h2 class="section-title">Why Businesses Trust Us</h2>
+
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <div class="trust-icon">✓</div>
+                    <div class="trust-text">Real Business Experience</div>
+                </div>
+
+                <div class="trust-badge">
+                    <div class="trust-icon">🛡️</div>
+                    <div class="trust-text">Security-First Approach</div>
+                </div>
+
+                <div class="trust-badge">
+                    <div class="trust-icon">💬</div>
+                    <div class="trust-text">Clear Communication</div>
+                </div>
+
+                <div class="trust-badge">
+                    <div class="trust-icon">⚡</div>
+                    <div class="trust-text">Fast Response Times</div>
+                </div>
+
+                <div class="trust-badge">
+                    <div class="trust-icon">💰</div>
+                    <div class="trust-text">Transparent Pricing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Business Technology?</h2>
+            <p>Let's discuss how we can help your business work smarter and grow faster.</p>
+            <a href="mailto:walterdominicsmith@gmail.com" class="btn btn-primary">Schedule Your Free Consultation</a>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 Dynexus Solutions. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">Professional Technical Services | Infrastructure | Automation</p>
+        <div class="container">
+            <p>&copy; 2026 Dynexus Solutions. All rights reserved.</p>
+            <p style="margin-top: 1rem;">Professional Technology Solutions for Growing Businesses</p>
+            <div class="footer-links">
+                <a href="mailto:walterdominicsmith@gmail.com">Email Us</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </footer>
 
 </body>
