@@ -33,9 +33,20 @@
   body {
     margin: 0;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-    background: var(--bg);
+    background: #060f1e;
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
+  }
+
+  #fireCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: block;
+    z-index: 0;
+    pointer-events: none;
   }
 
   ::selection { background: var(--gold); color: var(--navy); }
@@ -155,27 +166,15 @@
 
   .hero {
     position: relative;
-    background: linear-gradient(160deg, #050f1f 30%, var(--navy2));
     color: white;
-    overflow: hidden;
-  }
-
-  #fireCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    opacity: .85;
+    z-index: 2;
   }
 
   .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(180deg, rgba(5,15,31,.55), rgba(5,15,31,.1) 45%, rgba(5,15,31,.05)),
-      repeating-linear-gradient(-55deg, rgba(255,255,255,.02) 0 2px, transparent 2px 14px);
+    background: repeating-linear-gradient(-55deg, rgba(255,255,255,.02) 0 2px, transparent 2px 14px);
     pointer-events: none;
     z-index: 1;
   }
@@ -375,7 +374,7 @@
 
   /* ================= shop ================= */
 
-  .shop-wrap { max-width: 1180px; margin: auto; padding: 50px 20px 30px; }
+  .shop-wrap { position: relative; z-index: 2; max-width: 1180px; margin: auto; padding: 50px 20px 30px; }
 
   .section-title { margin-bottom: 8px; }
 
@@ -385,28 +384,30 @@
     font-size: 34px;
     letter-spacing: .04em;
     text-transform: uppercase;
-    color: var(--navy);
+    color: #f2f6fb;
     margin: 0 0 6px;
     display: flex;
     align-items: center;
     gap: 14px;
+    text-shadow: 0 2px 16px rgba(0,0,0,.5);
   }
 
   .section-title h3::after {
     content: "";
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, var(--line), transparent);
+    background: linear-gradient(90deg, rgba(255,255,255,.18), transparent);
   }
 
-  .section-title span { color: var(--muted); font-size: 14.5px; }
+  .section-title span { color: #93a3b8; font-size: 14.5px; }
 
   .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0 26px; }
 
   .chip {
-    border: 1.5px solid #d3d9e2;
-    background: white;
-    color: #46505c;
+    border: 1.5px solid rgba(255,255,255,.22);
+    background: rgba(10,22,42,.55);
+    backdrop-filter: blur(6px);
+    color: #d5deea;
     border-radius: 999px;
     padding: 9px 18px;
     font-size: 12.5px;
@@ -417,13 +418,13 @@
     transition: all .16s;
   }
 
-  .chip:hover { border-color: var(--navy); color: var(--navy); }
+  .chip:hover { border-color: var(--gold); color: var(--gold-soft); }
 
   .chip.active {
-    background: var(--navy);
-    color: white;
-    border-color: var(--navy);
-    box-shadow: 0 6px 16px rgba(7,26,51,.25);
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+    box-shadow: 0 6px 18px rgba(216,169,40,.35);
   }
 
   .grid {
@@ -669,7 +670,7 @@
 
   /* ================= how it works ================= */
 
-  .how-wrap { max-width: 1180px; margin: auto; padding: 30px 20px 80px; }
+  .how-wrap { position: relative; z-index: 2; max-width: 1180px; margin: auto; padding: 30px 20px 80px; }
 
   .steps {
     display: grid;
@@ -680,17 +681,19 @@
   }
 
   .step {
-    background: white;
-    border: 1px solid var(--line);
+    background: linear-gradient(165deg, rgba(10,22,42,.72), rgba(13,30,56,.5));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.13);
     border-radius: 16px;
     padding: 24px 20px 22px;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 16px 40px rgba(2,8,20,.35);
     text-align: center;
     position: relative;
-    transition: transform .25s, box-shadow .25s;
+    transition: transform .25s, box-shadow .25s, border-color .25s;
   }
 
-  .step:hover { transform: translateY(-5px); box-shadow: var(--card-shadow-hover); }
+  .step:hover { transform: translateY(-5px); border-color: rgba(216,169,40,.45); }
 
   .step-num {
     width: 46px;
@@ -702,8 +705,8 @@
     font-family: var(--display);
     font-weight: 800;
     font-size: 21px;
-    color: var(--gold);
-    background: var(--navy);
+    color: var(--navy);
+    background: var(--gold);
     clip-path: polygon(50% 0, 100% 14%, 100% 62%, 50% 100%, 0 62%, 0 14%);
   }
 
@@ -714,10 +717,10 @@
     font-size: 19px;
     letter-spacing: .05em;
     text-transform: uppercase;
-    color: var(--navy);
+    color: #f2f6fb;
   }
 
-  .step p { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+  .step p { margin: 0; color: #a9b6c6; font-size: 13.5px; line-height: 1.6; }
 
   /* ================= drawer ================= */
 
@@ -1050,6 +1053,8 @@
   .lightbox.show img { transform: scale(1); }
 
   footer.site {
+    position: relative;
+    z-index: 2;
     background: var(--navy);
     color: #9fb0c5;
     text-align: center;
@@ -1085,6 +1090,8 @@
 </head>
 <body>
 
+<canvas id="fireCanvas" aria-hidden="true"></canvas>
+
 <div class="demo-ribbon">
   Demo preview by <a href="../../portfolio.html">Dynexus Solutions</a> — orders are simulated, no payment is collected.
 </div>
@@ -1112,7 +1119,6 @@
 </div>
 
 <section class="hero">
-  <canvas id="fireCanvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <div>
       <div class="eyebrow stag d1">Battalion 7 • Special Operations</div>
@@ -1264,32 +1270,62 @@ float noise(vec2 p){
 
 float fbm(vec2 p){
   float v = 0.0, a = 0.5;
-  for(int i = 0; i < 5; i++){
+  for(int i = 0; i < 6; i++){
     v += a * noise(p);
-    p = p * 2.03 + vec2(1.7, 9.2);
+    p = p * 2.02 + vec2(1.7, 9.2);
     a *= 0.5;
   }
   return v;
 }
 
+// ridged turbulence: sharp licks instead of soft clouds
+float ridge(vec2 p){
+  return 1.0 - abs(2.0 * fbm(p) - 1.0);
+}
+
 void main(){
+  float ar = r.x / r.y;
   vec2 uv = gl_FragCoord.xy / r;
-  vec2 q = vec2(uv.x * (r.x / r.y) * 1.6, uv.y * 2.2);
-  // two layers of upward-scrolling turbulence
-  float n1 = fbm(q * 1.6 + vec2(0.0, -t * 0.55));
-  float n2 = fbm(q * 3.1 + vec2(4.7, -t * 1.15));
-  float turb = n1 * 0.72 + n2 * 0.28;
-  // flame body: strongest at the bottom, licks rising with turbulence
-  float body = pow(max(0.0, 1.0 - uv.y * 1.25), 1.4);
-  float i = turb * body * 1.9 - 0.18;
+  // flames stretched tall: compress y frequency vs x
+  vec2 p = vec2(uv.x * ar * 2.6, uv.y * 1.55);
+
+  // domain warp — swirling advection like hot air
+  vec2 w = vec2(
+    fbm(p * 1.1 + vec2(0.0, -t * 0.5)),
+    fbm(p * 1.1 + vec2(5.2, -t * 0.45))
+  );
+  vec2 pw = p + (w - 0.5) * 1.35;
+
+  // main turbulence, rising
+  float n = fbm(pw * vec2(1.9, 1.25) + vec2(0.0, -t * 1.05));
+  // sharp inner tongues, rising faster
+  float rg = ridge(pw * vec2(3.1, 2.0) + vec2(2.3, -t * 1.85));
+  float turb = n * 0.62 + rg * 0.38;
+
+  // flame height varies along x and breathes over time
+  float hvar = fbm(vec2(uv.x * ar * 2.1, t * 0.22));
+  float flameH = 0.2 + hvar * 0.42;
+  float shape = 1.0 - smoothstep(0.02, flameH, uv.y);
+  // hot unbroken base
+  float base = 1.0 - smoothstep(0.0, 0.09, uv.y);
+
+  float i = turb * shape * 2.35 - 0.26 + base * 0.55;
   i = max(i, 0.0);
-  // ember flicker near the base
-  float flick = 0.92 + 0.08 * noise(vec2(t * 3.0, uv.x * 8.0));
-  i *= flick;
-  vec3 col = vec3(1.35, 0.42, 0.05) * i
-           + vec3(1.5, 1.0, 0.25) * pow(i, 2.6)
-           + vec3(0.4, 0.05, 0.02) * pow(body, 2.0) * 0.35;
-  float a = clamp(i * 1.5, 0.0, 1.0) * 0.85 + pow(body, 2.0) * 0.12;
+
+  // global flicker
+  i *= 0.9 + 0.1 * noise(vec2(t * 3.4, uv.x * 6.0));
+
+  // blackbody-style ramp: deep red -> orange -> yellow -> white-hot core
+  vec3 col = vec3(0.55, 0.05, 0.01) * i
+           + vec3(1.25, 0.36, 0.03) * pow(i, 1.8)
+           + vec3(1.45, 0.95, 0.20) * pow(i, 3.2)
+           + vec3(1.30, 1.22, 0.95) * pow(i, 6.0);
+
+  // faint smoke / heat-glow above the flames
+  float glow = pow(max(0.0, 1.0 - uv.y * 1.1), 3.0) * 0.10;
+  col += vec3(0.5, 0.1, 0.02) * glow;
+
+  float a = clamp(i * 1.6, 0.0, 1.0) * 0.92 + glow;
   gl_FragColor = vec4(col, a);
 }`;
 
