@@ -38,12 +38,14 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  html { background: #060f1e; }
+
   #fireCanvas {
     position: fixed;
     inset: 0;
     width: 100vw;
     height: 100vh;
-    height: 100dvh;
+    height: 100lvh; /* stable on mobile while the URL bar collapses */
     display: block;
     z-index: 0;
     pointer-events: none;
@@ -1304,10 +1306,12 @@ void main(){
 
   // flame height varies along x and breathes over time
   float hvar = fbm(vec2(uv.x * ar * 2.1, t * 0.22));
-  float flameH = 0.2 + hvar * 0.42;
+  // portrait screens get much taller flames so they stay visible behind content
+  float boost = mix(1.0, 1.9, smoothstep(1.1, 0.55, ar));
+  float flameH = (0.2 + hvar * 0.42) * boost;
   float shape = 1.0 - smoothstep(0.02, flameH, uv.y);
   // hot unbroken base
-  float base = 1.0 - smoothstep(0.0, 0.09, uv.y);
+  float base = 1.0 - smoothstep(0.0, 0.09 * boost, uv.y);
 
   float i = turb * shape * 2.35 - 0.26 + base * 0.55;
   i = max(i, 0.0);
