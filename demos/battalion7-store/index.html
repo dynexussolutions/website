@@ -40,6 +40,20 @@
 
   html { background: #060f1e; }
 
+  /* static gradient flames when WebGL is unavailable */
+  body.no-webgl::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(90% 42% at 22% 106%, rgba(255,210,80,.75), rgba(240,120,20,.42) 42%, transparent 72%),
+      radial-gradient(110% 55% at 62% 110%, rgba(250,150,30,.6), rgba(180,50,8,.35) 48%, transparent 75%),
+      radial-gradient(80% 38% at 88% 104%, rgba(255,190,60,.55), transparent 68%),
+      radial-gradient(140% 70% at 50% 118%, rgba(120,20,5,.5), transparent 80%);
+  }
+
   #fireCanvas {
     position: fixed;
     inset: 0;
@@ -261,15 +275,10 @@
   }
 
   .notice {
-    background: linear-gradient(165deg, rgba(10,22,42,.66), rgba(13,30,56,.44));
-    backdrop-filter: blur(12px) saturate(1.2);
-    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    background: none;
     color: white;
-    padding: 32px 30px 28px;
-    border-radius: 22px;
-    border: 1px solid rgba(216,169,40,.38);
-    border-top: 4px solid var(--gold);
-    box-shadow: 0 30px 70px rgba(2,8,20,.45), inset 0 1px 0 rgba(255,255,255,.08);
+    padding: 0;
+    text-shadow: 0 2px 12px rgba(0,0,0,.55);
   }
 
   .notice-label {
@@ -293,14 +302,15 @@
   .countdown { display: flex; gap: 10px; margin-top: 18px; }
 
   .cd-cell {
-    background: rgba(255,255,255,.07);
+    background: rgba(5,12,24,.32);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     color: white;
     border: 1px solid rgba(255,255,255,.14);
     border-radius: 14px;
     padding: 15px 0 12px;
     text-align: center;
     flex: 1;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
   }
 
   .cd-cell b {
@@ -329,10 +339,10 @@
   .notice-pay {
     margin-top: 18px;
     padding-top: 16px;
-    border-top: 1px dashed rgba(255,255,255,.2);
+    border-top: 1px dashed rgba(255,255,255,.28);
     font-size: 14px;
     line-height: 1.65;
-    color: #c3cedd;
+    color: #d6dfeb;
   }
 
   .notice-pay strong { color: var(--gold-soft); }
@@ -1251,9 +1261,9 @@ function saveCart() {
 
 (function initFire() {
   const canvas = document.getElementById("fireCanvas");
-  if (REDUCED) { canvas.remove(); return; }
+  const fallback = () => { canvas.remove(); document.body.classList.add("no-webgl"); };
   const gl = canvas.getContext("webgl", { alpha: true, antialias: false });
-  if (!gl) { canvas.remove(); return; }
+  if (!gl) { fallback(); return; }
 
   const vsrc = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
   const fsrc = `
@@ -1344,7 +1354,7 @@ void main(){
   gl.attachShader(prog, shader(gl.VERTEX_SHADER, vsrc));
   gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, fsrc));
   gl.linkProgram(prog);
-  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { canvas.remove(); return; }
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { fallback(); return; }
   gl.useProgram(prog);
 
   const buf = gl.createBuffer();
@@ -1373,14 +1383,25 @@ void main(){
     }
   }
 
+  function draw(sec) {
+    size();
+    gl.uniform2f(uR, canvas.width, canvas.height);
+    gl.uniform1f(uT, sec);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  if (REDUCED) {
+    // reduced motion: keep the flames as a static backdrop instead of removing them
+    draw(7.3);
+    window.addEventListener("resize", () => draw(7.3));
+    return;
+  }
+
   const t0 = performance.now();
   (function frame() {
     requestAnimationFrame(frame);
     if (!visible) return;
-    size();
-    gl.uniform2f(uR, canvas.width, canvas.height);
-    gl.uniform1f(uT, (performance.now() - t0) / 1000);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    draw((performance.now() - t0) / 1000);
   })();
 })();
 
