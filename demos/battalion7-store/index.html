@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Battalion 7 Apparel Shop | Demo</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚒</text></svg>">
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --navy: #071a33;
+    --navy2: #102b50;
+    --navy3: #17385f;
+    --gold: #d8a928;
+    --red: #a51f27;
+    --ink: #142033;
+    --muted: #6f7887;
+    --line: #e3e7ed;
+    --bg: #f4f6f8;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  .demo-ribbon {
+    background: #1f2937;
+    color: white;
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 7px 14px;
+  }
+
+  .demo-ribbon a { color: #93c5fd; font-weight: 600; }
+
+  /* ---- top bar ---- */
+  .topbar {
+    background: linear-gradient(135deg, var(--navy), var(--navy2));
+    color: white;
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 3px 15px rgba(0,0,0,.16);
+  }
+
+  .topbar-inner {
+    max-width: 1180px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand h1 { margin: 0; font-size: 21px; letter-spacing: .5px; }
+  .brand small { color: #d9e3ef; }
+
+  .cart-btn {
+    border: 1px solid rgba(255,255,255,.25);
+    background: white;
+    color: var(--navy);
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform .15s;
+  }
+
+  .cart-btn:active { transform: scale(.96); }
+
+  .badge {
+    background: var(--red);
+    color: white;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    padding: 0 6px;
+    transition: transform .2s;
+  }
+
+  .badge.pop { animation: pop .35s; }
+
+  @keyframes pop {
+    40% { transform: scale(1.45); }
+    100% { transform: scale(1); }
+  }
+
+  /* ---- hero ---- */
+  .hero {
+    background: linear-gradient(180deg, #ffffff, var(--bg));
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 44px 20px 30px;
+    display: grid;
+    grid-template-columns: 1.4fr .8fr;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    color: var(--red);
+    font-weight: 900;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  .hero h2 {
+    font-size: 44px;
+    line-height: 1.03;
+    margin: 8px 0 12px;
+    color: var(--navy);
+  }
+
+  .hero p {
+    font-size: 18px;
+    line-height: 1.55;
+    color: #4d5968;
+    max-width: 760px;
+  }
+
+  .notice {
+    background: white;
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--gold);
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(10,29,52,.07);
+  }
+
+  .notice strong { display: block; color: var(--navy); margin-bottom: 4px; }
+
+  .countdown {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .cd-cell {
+    background: var(--navy);
+    color: white;
+    border-radius: 10px;
+    padding: 8px 0;
+    text-align: center;
+    flex: 1;
+  }
+
+  .cd-cell b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+  .cd-cell span { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; opacity: .75; }
+
+  /* ---- shop ---- */
+  .shop-wrap { max-width: 1180px; margin: auto; padding: 28px 20px 90px; }
+
+  .section-title {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .section-title h3 { font-size: 26px; margin: 0; color: var(--navy); }
+  .section-title span { color: var(--muted); }
+
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+
+  .chip {
+    border: 1px solid #cfd6df;
+    background: white;
+    border-radius: 999px;
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .15s;
+  }
+
+  .chip.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 26px rgba(18,38,63,.06);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise .45s forwards;
+    transition: box-shadow .2s, transform .2s;
+  }
+
+  .card:hover { box-shadow: 0 16px 40px rgba(18,38,63,.13); }
+
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .img-wrap {
+    aspect-ratio: 1/1;
+    background: linear-gradient(145deg, #edf1f5, #ffffff);
+    position: relative;
+    overflow: hidden;
+    padding: 12px;
+    cursor: zoom-in;
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
+    transition: transform .35s ease, opacity .25s;
+  }
+
+  .img-wrap:hover img { transform: scale(1.06); }
+  .img-wrap img.swap { opacity: 0; }
+
+  .card-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .name-row { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+  .name-row h4 { margin: 0; color: var(--navy); font-size: 19px; }
+  .price { font-size: 21px; font-weight: 900; color: var(--red); white-space: nowrap; }
+  .meta { color: var(--muted); font-size: 14px; line-height: 1.45; }
+
+  .color-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .color-tab {
+    border: 1px solid #cfd6df;
+    background: white;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all .15s;
+  }
+
+  .swatch { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); }
+
+  .color-tab.active {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 2px rgba(7,26,51,.12);
+  }
+
+  .controls { display: grid; grid-template-columns: 1fr 110px; gap: 10px; margin-top: auto; }
+
+  label {
+    font-size: 12px;
+    font-weight: 800;
+    color: #5c6675;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  select, input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #cfd6df;
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+    font-family: inherit;
+  }
+
+  .stepper { display: flex; border: 1px solid #cfd6df; border-radius: 10px; overflow: hidden; }
+
+  .stepper button {
+    border: 0;
+    background: #eef1f5;
+    width: 32px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--navy);
+  }
+
+  .stepper input {
+    border: 0;
+    text-align: center;
+    padding: 11px 0;
+    width: 100%;
+    -moz-appearance: textfield;
+  }
+
+  .stepper input::-webkit-outer-spin-button,
+  .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  .add {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 14px;
+    border: 0;
+    border-radius: 11px;
+    background: var(--navy);
+    color: white;
+    font-weight: 900;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+  }
+
+  .add:hover { background: #0f3158; }
+  .add:active { transform: scale(.98); }
+  .add.added { background: #1d7a3e; }
+
+  /* ---- drawer ---- */
+  .drawer {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: min(480px, 100vw);
+    background: white;
+    z-index: 40;
+    transform: translateX(100%);
+    transition: transform .28s cubic-bezier(.2,.7,.3,1);
+    box-shadow: -18px 0 50px rgba(0,0,0,.18);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .drawer.open { transform: translateX(0); }
+
+  .drawer-head {
+    padding: 18px 20px;
+    background: var(--navy);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .drawer-head h3 { margin: 0; }
+
+  .close { background: transparent; border: 0; color: white; font-size: 28px; cursor: pointer; line-height: 1; }
+
+  .drawer-body { padding: 18px; overflow: auto; flex: 1; }
+
+  .cart-item {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 58px 1fr auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .cart-item .thumb {
+    width: 58px;
+    height: 58px;
+    border-radius: 10px;
+    background: #eef1f5;
+    object-fit: contain;
+  }
+
+  .cart-item strong { color: var(--navy); }
+  .cart-item .sub { color: var(--muted); font-size: 13px; }
+
+  .line-qty { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; }
+
+  .line-qty button {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 1px solid #cfd6df;
+    background: white;
+    font-weight: 800;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .remove {
+    border: 0;
+    background: none;
+    color: var(--red);
+    font-weight: 800;
+    cursor: pointer;
+    padding: 0;
+    font-size: 12px;
+    margin-left: 8px;
+  }
+
+  .subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 21px;
+    font-weight: 900;
+    padding: 16px 0;
+  }
+
+  .checkout { border-top: 1px solid var(--line); padding-top: 16px; }
+  .checkout h4 { margin: 0 0 12px; color: var(--navy); font-size: 18px; }
+  .field { margin-bottom: 12px; }
+
+  .field .err { color: var(--red); font-size: 12px; font-weight: 700; display: none; margin-top: 3px; }
+  .field.invalid input { border-color: var(--red); }
+  .field.invalid .err { display: block; }
+
+  .payment {
+    background: #f9f3e3;
+    border: 1px solid #ead8a1;
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 12px 0;
+  }
+
+  .submit {
+    width: 100%;
+    padding: 14px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--red);
+    color: white;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .submit:disabled { opacity: .55; cursor: not-allowed; }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s;
+  }
+
+  .overlay.show { opacity: 1; pointer-events: auto; }
+
+  .empty { color: var(--muted); text-align: center; padding: 40px 10px; }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%) translateY(20px);
+    background: #12243b;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 999px;
+    z-index: 60;
+    box-shadow: 0 8px 30px rgba(0,0,0,.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: all .25s;
+  }
+
+  .toast.show { opacity: 1; transform: translateX(-50%); }
+
+  .success {
+    padding: 24px;
+    background: #edf8f0;
+    border: 1px solid #bfe3c7;
+    border-radius: 14px;
+    color: #214d2b;
+    line-height: 1.55;
+  }
+
+  .success .ordnum {
+    background: white;
+    border: 1px dashed #9ccba7;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: #14532d;
+    margin: 12px 0;
+  }
+
+  .copy-btn {
+    border: 1px solid #9ccba7;
+    background: white;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #14532d;
+  }
+
+  .venmo-btn {
+    display: block;
+    background: #008CFF;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 900;
+    font-size: 16px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin-top: 16px;
+    border: 0;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  /* ---- lightbox ---- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(7,17,32,.85);
+    z-index: 70;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    cursor: zoom-out;
+  }
+
+  .lightbox.show { display: flex; }
+
+  .lightbox img {
+    max-width: min(860px, 94vw);
+    max-height: 88vh;
+    border-radius: 16px;
+    background: white;
+    padding: 14px;
+  }
+
+  @media(max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero h2 { font-size: 36px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media(max-width: 620px) {
+    .brand small { display: none; }
+    .hero-inner { padding-top: 30px; }
+    .hero h2 { font-size: 31px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">
+  Demo preview by <a href="../../portfolio.html">Dynexus Solutions</a> — orders are simulated, no payment is collected.
+</div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <h1 id="storeName">Battalion 7 Apparel Shop</h1>
+      <small id="subtitle">Dallas Fire Department</small>
+    </div>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart <span class="badge" id="cartCount">0</span>
+    </button>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Battalion 7 • Special Operations</div>
+      <h2>Official Battalion 7 Apparel</h2>
+      <p>Choose your apparel, color, size and quantity, then submit one complete order through the cart.</p>
+    </div>
+    <div class="notice">
+      <strong>Order deadline</strong>
+      <span id="deadlineText"></span>
+      <div class="countdown" id="countdown"></div>
+      <div style="height:12px"></div>
+      <strong>Payment</strong>
+      <span id="paymentText"></span>
+    </div>
+  </div>
+</section>
+
+<main class="shop-wrap">
+  <div class="section-title">
+    <h3>Shop Apparel</h3>
+    <span>Available in Navy Blue and White</span>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div id="productGrid" class="grid"></div>
+</main>
+
+<div id="overlay" class="overlay" onclick="closeCart()"></div>
+
+<aside id="drawer" class="drawer" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Your Order</h3>
+    <button class="close" onclick="closeCart()" aria-label="Close">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<div id="toast" class="toast"></div>
+
+<div id="lightbox" class="lightbox" onclick="this.classList.remove('show')">
+  <img id="lightboxImg" alt="Product image">
+</div>
+
+<script>
+const CONFIG = {
+  STORE_NAME: "Battalion 7 Apparel Shop",
+  SUBTITLE: "Dallas Fire Department",
+  ORDER_DEADLINE: "2026-09-11T23:59:59-05:00",
+  PAYMENT_NOTE: "All orders must be prepaid by Venmo. Please ensure your name is in the Venmo payment description.",
+  VENMO_HANDLE: "@venmo-handle",
+  THANK_YOU_MESSAGE: "Your order has been received. Please complete payment by Venmo if you have not already done so."
+};
+
+const PRODUCTS = [
+  { productId: "soft-short-navy",  productName: "Soft Style Short Sleeve", category: "Short Sleeve", color: "Navy Blue", price: 20, style: "Next Level 6210",  material: "60/40 cotton/poly", sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/soft-short-navy.webp" },
+  { productId: "soft-short-white", productName: "Soft Style Short Sleeve", category: "Short Sleeve", color: "White",     price: 20, style: "Next Level 6210",  material: "60/40 cotton/poly", sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/soft-short-white.webp" },
+  { productId: "soft-long-navy",   productName: "Soft Style Long Sleeve",  category: "Long Sleeve",  color: "Navy Blue", price: 25, style: "Next Level 6211",  material: "60/40 cotton/poly", sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/soft-long-navy.webp" },
+  { productId: "soft-long-white",  productName: "Soft Style Long Sleeve",  category: "Long Sleeve",  color: "White",     price: 25, style: "Next Level 6211",  material: "60/40 cotton/poly", sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/soft-long-white.webp" },
+  { productId: "dri-short-navy",   productName: "Dri-Fit Short Sleeve",    category: "Short Sleeve", color: "Navy Blue", price: 20, style: "Team 365 TT11",    material: "100% polyester",    sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/dri-short-navy.webp" },
+  { productId: "dri-short-white",  productName: "Dri-Fit Short Sleeve",    category: "Short Sleeve", color: "White",     price: 20, style: "Team 365 TT11",    material: "100% polyester",    sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/dri-short-white.webp" },
+  { productId: "dri-long-navy",    productName: "Dri-Fit Long Sleeve",     category: "Long Sleeve",  color: "Navy Blue", price: 25, style: "Team 365 TT11L",   material: "100% polyester",    sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/dri-long-navy.webp" },
+  { productId: "dri-long-white",   productName: "Dri-Fit Long Sleeve",     category: "Long Sleeve",  color: "White",     price: 25, style: "Team 365 TT11L",   material: "100% polyester",    sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/dri-long-white.webp" },
+  { productId: "crew-navy",        productName: "Crew Neck Sweater",       category: "Sweatshirts",  color: "Navy Blue", price: 30, style: "Gildan G180",      material: "50/50 cotton/poly", sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/crew-navy.webp" },
+  { productId: "crew-white",       productName: "Crew Neck Sweater",       category: "Sweatshirts",  color: "White",     price: 30, style: "Gildan G180",      material: "50/50 cotton/poly", sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/crew-white.webp" },
+  { productId: "hoodie-navy",      productName: "Hoodie",                  category: "Sweatshirts",  color: "Navy Blue", price: 30, style: "Gildan G185",      material: "50/50 cotton/poly", sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/hoodie-navy.webp" },
+  { productId: "hoodie-white",     productName: "Hoodie",                  category: "Sweatshirts",  color: "White",     price: 30, style: "Gildan G185",      material: "50/50 cotton/poly", sizes: ["XS","S","M","L","XL","2XL","3XL"], image: "img/hoodie-white.webp" }
+];
+
+const SWATCHES = { "Navy Blue": "#0b2140", "White": "#ffffff" };
+
+let cart = [];
+let activeFilter = "All";
+
+try { cart = JSON.parse(localStorage.getItem("b7cart") || "[]"); } catch (e) { cart = []; }
+
+function saveCart() {
+  try { localStorage.setItem("b7cart", JSON.stringify(cart)); } catch (e) {}
+}
+
+/* ---------- init ---------- */
+
+document.getElementById("storeName").textContent = CONFIG.STORE_NAME;
+document.getElementById("subtitle").textContent = CONFIG.SUBTITLE;
+document.getElementById("paymentText").textContent = CONFIG.PAYMENT_NOTE;
+
+const deadline = new Date(CONFIG.ORDER_DEADLINE);
+document.getElementById("deadlineText").textContent = deadline.toLocaleString([], {
+  month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit"
+});
+
+function tickCountdown() {
+  const el = document.getElementById("countdown");
+  const ms = deadline - new Date();
+  if (ms <= 0) { el.innerHTML = '<div class="cd-cell" style="flex:none;padding:8px 14px"><b>Ordering closed</b></div>'; return; }
+  const d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5),
+        m = Math.floor(ms % 36e5 / 6e4), s = Math.floor(ms % 6e4 / 1e3);
+  el.innerHTML = [[d,"days"],[h,"hrs"],[m,"min"],[s,"sec"]]
+    .map(c => `<div class="cd-cell"><b>${c[0]}</b><span>${c[1]}</span></div>`).join("");
+}
+tickCountdown();
+setInterval(tickCountdown, 1000);
+
+/* ---------- catalog ---------- */
+
+function groups() {
+  const map = new Map();
+  PRODUCTS.forEach(p => {
+    if (!map.has(p.productName)) map.set(p.productName, []);
+    map.get(p.productName).push(p);
+  });
+  return [...map.values()];
+}
+
+function renderFilters() {
+  const cats = ["All", ...new Set(PRODUCTS.map(p => p.category))];
+  document.getElementById("filters").innerHTML = cats.map(c =>
+    `<button class="chip ${c === activeFilter ? "active" : ""}" onclick="setFilter('${c}')">${c}</button>`
+  ).join("");
+}
+
+function setFilter(c) {
+  activeFilter = c;
+  renderFilters();
+  renderProducts();
+}
+
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+  groups()
+    .filter(v => activeFilter === "All" || v[0].category === activeFilter)
+    .forEach((variants, index) => {
+      const first = variants[0];
+      const id = "prod_" + index;
+      const card = document.createElement("div");
+      card.className = "card";
+      card.style.animationDelay = (index * 60) + "ms";
+      card.dataset.group = first.productName;
+      card.dataset.variantIndex = 0;
+      card.innerHTML = `
+        <div class="img-wrap" onclick="zoom('${id}')"><img id="${id}_pic" alt=""></div>
+        <div class="card-body">
+          <div class="name-row">
+            <h4>${esc(first.productName)}</h4>
+            <div class="price" id="${id}_price"></div>
+          </div>
+          <div class="meta" id="${id}_meta"></div>
+          <div>
+            <label>Color</label>
+            <div class="color-tabs" id="${id}_colors"></div>
+          </div>
+          <div class="controls">
+            <div>
+              <label>Size</label>
+              <select id="${id}_size"></select>
+            </div>
+            <div>
+              <label>Qty</label>
+              <div class="stepper">
+                <button onclick="bump('${id}',-1)">−</button>
+                <input id="${id}_qty" type="number" min="1" max="20" value="1">
+                <button onclick="bump('${id}',1)">+</button>
+              </div>
+            </div>
+          </div>
+          <button class="add" id="${id}_add" onclick="addFromCard('${id}')">Add to Cart</button>
+        </div>`;
+      grid.appendChild(card);
+      buildVariantUI(id, variants, 0);
+    });
+}
+
+function buildVariantUI(id, variants, selectedIndex) {
+  const sel = variants[selectedIndex];
+  const pic = document.getElementById(id + "_pic");
+  pic.classList.add("swap");
+  setTimeout(() => {
+    pic.src = sel.image;
+    pic.alt = sel.productName + " " + sel.color;
+    pic.onload = () => pic.classList.remove("swap");
+  }, 120);
+
+  document.getElementById(id + "_price").textContent = "$" + Number(sel.price).toFixed(0);
+  document.getElementById(id + "_meta").innerHTML = esc(sel.style) + "<br>" + esc(sel.material);
+
+  document.getElementById(id + "_colors").innerHTML = variants.map((v, i) => `
+    <button class="color-tab ${i === selectedIndex ? "active" : ""}" onclick="selectVariant('${id}',${i})">
+      <span class="swatch" style="background:${SWATCHES[v.color] || "#ccc"}"></span>${esc(v.color)}
+    </button>`).join("");
+
+  document.getElementById(id + "_size").innerHTML =
+    sel.sizes.map(s => "<option>" + esc(s) + "</option>").join("");
+
+  pic.closest(".card").dataset.variantIndex = selectedIndex;
+}
+
+function cardVariants(id) {
+  const card = document.getElementById(id + "_pic").closest(".card");
+  return { card, variants: PRODUCTS.filter(p => p.productName === card.dataset.group) };
+}
+
+function selectVariant(id, index) {
+  const { variants } = cardVariants(id);
+  buildVariantUI(id, variants, index);
+}
+
+function bump(id, delta) {
+  const input = document.getElementById(id + "_qty");
+  input.value = Math.min(20, Math.max(1, Number(input.value || 1) + delta));
+}
+
+function zoom(id) {
+  document.getElementById("lightboxImg").src = document.getElementById(id + "_pic").src;
+  document.getElementById("lightbox").classList.add("show");
+}
+
+/* ---------- cart ---------- */
+
+function addFromCard(id) {
+  const { card, variants } = cardVariants(id);
+  const sel = variants[Number(card.dataset.variantIndex || 0)];
+  const size = document.getElementById(id + "_size").value;
+  const qty = Math.max(1, Number(document.getElementById(id + "_qty").value || 1));
+  const key = sel.productId + "|" + size;
+  const existing = cart.find(i => i.key === key);
+  if (existing) existing.qty += qty;
+  else cart.push({ key, productId: sel.productId, size, qty, name: sel.productName, color: sel.color, price: sel.price, image: sel.image });
+  saveCart();
+  updateCartCount(true);
+  const btn = document.getElementById(id + "_add");
+  btn.textContent = "✓ Added";
+  btn.classList.add("added");
+  setTimeout(() => { btn.textContent = "Add to Cart"; btn.classList.remove("added"); }, 1100);
+  toast("Added to cart");
+}
+
+function updateCartCount(pop) {
+  const el = document.getElementById("cartCount");
+  el.textContent = cart.reduce((t, i) => t + i.qty, 0);
+  if (pop) { el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop"); }
+}
+
+function openCart() {
+  renderCart();
+  document.getElementById("drawer").classList.add("open");
+  document.getElementById("overlay").classList.add("show");
+}
+
+function closeCart() {
+  document.getElementById("drawer").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+
+function changeQty(index, delta) {
+  cart[index].qty += delta;
+  if (cart[index].qty < 1) cart.splice(index, 1);
+  saveCart();
+  updateCartCount();
+  renderCart();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  saveCart();
+  updateCartCount();
+  renderCart();
+}
+
+function renderCart() {
+  const body = document.getElementById("drawerBody");
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="empty">Your cart is empty.</div>';
+    return;
+  }
+  const subtotal = cart.reduce((t, i) => t + i.price * i.qty, 0);
+  body.innerHTML = `
+    <div>
+      ${cart.map((item, index) => `
+        <div class="cart-item">
+          <img class="thumb" src="${attr(item.image)}" alt="">
+          <div>
+            <strong>${esc(item.name)}</strong>
+            <div class="sub">${esc(item.color)} • ${esc(item.size)}</div>
+            <div class="line-qty">
+              <button onclick="changeQty(${index},-1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="changeQty(${index},1)">+</button>
+              <button class="remove" onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+          <strong>$${(item.price * item.qty).toFixed(2)}</strong>
+        </div>`).join("")}
+    </div>
+    <div class="subtotal"><span>Total</span><span>$${subtotal.toFixed(2)}</span></div>
+    <div class="checkout">
+      <h4>Customer Information</h4>
+      <div class="field" id="f_name">
+        <label>Name</label>
+        <input id="custName" autocomplete="name">
+        <div class="err">Please enter your name</div>
+      </div>
+      <div class="field" id="f_phone">
+        <label>Phone number</label>
+        <input id="custPhone" type="tel" autocomplete="tel">
+        <div class="err">Please enter a valid phone number</div>
+      </div>
+      <div class="field" id="f_assign">
+        <label>Station/Shift Assignment (DFD only) or Hospital/Biotel or Other</label>
+        <input id="custAssignment">
+        <div class="err">Please enter your assignment</div>
+      </div>
+      <div class="payment">
+        <strong>Payment: Venmo</strong><br>
+        ${esc(CONFIG.PAYMENT_NOTE)}<br>
+        Venmo: <strong>${esc(CONFIG.VENMO_HANDLE)}</strong>
+      </div>
+      <button id="submitBtn" class="submit" onclick="submitOrder()">Submit Order</button>
+    </div>`;
+}
+
+/* ---------- order submission (simulated in this demo) ---------- */
+
+function validate() {
+  let ok = true;
+  const checks = [
+    ["f_name", "custName", v => v.length > 1],
+    ["f_phone", "custPhone", v => v.replace(/\D/g, "").length >= 7],
+    ["f_assign", "custAssignment", v => v.length > 0]
+  ];
+  checks.forEach(([fid, iid, test]) => {
+    const field = document.getElementById(fid);
+    const pass = test(document.getElementById(iid).value.trim());
+    field.classList.toggle("invalid", !pass);
+    if (!pass) ok = false;
+  });
+  return ok;
+}
+
+function submitOrder() {
+  if (!validate()) { toast("Please complete all customer fields"); return; }
+  const name = document.getElementById("custName").value.trim();
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  btn.textContent = "Submitting...";
+
+  const subtotal = cart.reduce((t, i) => t + i.price * i.qty, 0);
+  const orderNumber = "B7-" + new Date().toISOString().slice(2, 10).replace(/-/g, "") +
+    "-" + String(Math.floor(Math.random() * 900) + 100);
+  const summary = cart.map(i => `${i.qty}× ${i.name} (${i.color}/${i.size})`).join(", ");
+
+  // Simulated network delay; the production version records the order in a
+  // spreadsheet/database and emails a confirmation before showing this screen.
+  setTimeout(() => {
+    try {
+      const orders = JSON.parse(localStorage.getItem("b7orders") || "[]");
+      orders.push({ orderNumber, name, subtotal, summary, at: new Date().toISOString() });
+      localStorage.setItem("b7orders", JSON.stringify(orders));
+    } catch (e) {}
+    cart = [];
+    saveCart();
+    updateCartCount();
+    document.getElementById("drawerBody").innerHTML = `
+      <div class="success">
+        <strong>Order submitted!</strong>
+        <div class="ordnum">
+          <span>${esc(orderNumber)}</span>
+          <button class="copy-btn" onclick="copyOrder('${orderNumber}')">Copy</button>
+        </div>
+        <p>Items: ${esc(summary)}</p>
+        <p>Total: <strong>$${subtotal.toFixed(2)}</strong></p>
+        <p>${esc(CONFIG.THANK_YOU_MESSAGE)}</p>
+        <button class="venmo-btn" onclick="toast('Demo: the live version opens Venmo pre-filled with your total and order number')">Pay $${subtotal.toFixed(2)} with Venmo</button>
+      </div>`;
+  }, 700);
+}
+
+function copyOrder(num) {
+  navigator.clipboard && navigator.clipboard.writeText(num);
+  toast("Order number copied");
+}
+
+/* ---------- misc ---------- */
+
+function toast(message) {
+  const el = document.getElementById("toast");
+  el.textContent = message;
+  el.classList.add("show");
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => el.classList.remove("show"), 1900);
+}
+
+function esc(v) {
+  return String(v ?? "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+
+function attr(v) { return esc(v); }
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeCart();
+    document.getElementById("lightbox").classList.remove("show");
+  }
+});
+
+renderFilters();
+renderProducts();
+updateCartCount();
+</script>
+
+</body>
+</html>
