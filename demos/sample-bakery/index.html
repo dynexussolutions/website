@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maple &amp; Main Bakery | Fresh Baked Daily</title>
+    <meta name="robots" content="noindex">
+    <style>
+        :root {
+            --brown: #6b4226;
+            --brown-dark: #4a2d18;
+            --cream: #fdf6ec;
+            --gold: #d4a24e;
+            --text: #3d2b1f;
+            --muted: #8a7263;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.6;
+        }
+
+        .demo-ribbon {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .demo-ribbon a {
+            color: #93c5fd;
+            font-weight: 600;
+        }
+
+        nav {
+            background: var(--cream);
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brown);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        nav ul a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(74,45,24,0.75), rgba(74,45,24,0.75)), var(--brown);
+            color: var(--cream);
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--brown-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--brown);
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(107,66,38,0.12);
+        }
+
+        .menu-item .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item h3 {
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .info {
+            background: var(--brown);
+            color: var(--cream);
+        }
+
+        .info-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            text-align: center;
+        }
+
+        .info h2 {
+            color: var(--cream);
+        }
+
+        .info h3 {
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        footer {
+            background: var(--brown-dark);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="demo-ribbon">
+        Demo preview by <a href="../../portfolio.html">Dynexus Solutions</a> — this could be your business. Fictional content for demonstration.
+    </div>
+
+    <nav>
+        <div class="logo">🥐 Maple &amp; Main Bakery</div>
+        <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#visit">Visit Us</a></li>
+            <li><a href="#order">Order</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Fresh Baked. Every Morning.</h1>
+        <p>Small-batch breads, pastries, and cakes made from scratch in the heart of your neighborhood.</p>
+        <a href="#order" class="btn">Order Ahead</a>
+    </section>
+
+    <section id="menu">
+        <h2>Customer Favorites</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="icon">🥖</div>
+                <h3>Artisan Sourdough</h3>
+                <p>48-hour fermented, crackling crust, baked daily at dawn.</p>
+                <span class="price">$8</span>
+            </div>
+            <div class="menu-item">
+                <div class="icon">🥐</div>
+                <h3>Butter Croissants</h3>
+                <p>27 layers of laminated, all-butter flakiness.</p>
+                <span class="price">$4.50</span>
+            </div>
+            <div class="menu-item">
+                <div class="icon">🎂</div>
+                <h3>Custom Cakes</h3>
+                <p>Birthdays, weddings, and everything worth celebrating.</p>
+                <span class="price">from $45</span>
+            </div>
+            <div class="menu-item">
+                <div class="icon">🍪</div>
+                <h3>Brown Butter Cookies</h3>
+                <p>Crisp edges, chewy centers, sea-salt finish.</p>
+                <span class="price">$3</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="info" id="visit">
+        <div class="info-inner">
+            <div>
+                <h3>Hours</h3>
+                <p>Tue–Fri: 7am – 3pm<br>Sat–Sun: 8am – 2pm<br>Closed Mondays</p>
+            </div>
+            <div>
+                <h3>Location</h3>
+                <p>123 Maple Street<br>Your Town, USA<br>(555) 123-4567</p>
+            </div>
+            <div>
+                <h3>Order Ahead</h3>
+                <p id="order">Call or email us by 4pm<br>for next-morning pickup.<br>hello@mapleandmain.example</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Maple &amp; Main Bakery — Demo site by Dynexus Solutions</p>
+    </footer>
+
+</body>
+</html>
