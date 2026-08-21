@@ -5,41 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynexus Solutions | Transform Your Business Technology</title>
     <meta name="description" content="Professional technology solutions that help businesses work smarter, save costs, and grow faster.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
             --primary-dark: #1e40af;
+            --violet: #7c3aed;
+            --teal: #0ea5a4;
             --accent: #10b981;
             --dark: #1f2937;
+            --navy: #0b1120;
+            --navy2: #101b33;
             --light: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
             --gray-600: #4b5563;
-            --gray-900: #111827;
+            --gray-900: #0f172a;
+            --line: #e5eaf1;
+            --display: "Sora", Inter, sans-serif;
+            --shadow: 0 1px 2px rgba(15,23,42,.05), 0 12px 32px rgba(15,23,42,.08);
+            --shadow-hover: 0 2px 4px rgba(15,23,42,.06), 0 24px 54px rgba(15,23,42,.16);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
             color: var(--dark);
-            background: var(--light);
+            background: var(--gray-50);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header/Navigation */
+        h1, h2, h3, h4 { font-family: var(--display); }
+
+        ::selection { background: var(--primary); color: white; }
+
+        /* ---- site-wide ambient background (fixed; content scrolls over it) ---- */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ambient i {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: .35;
+            animation: drift 22s ease-in-out infinite alternate;
+        }
+
+        .ambient i:nth-child(1) { width: 46vw; height: 46vw; left: -12vw; top: -8vw; background: radial-gradient(circle, #bfd4ff, transparent 65%); }
+        .ambient i:nth-child(2) { width: 40vw; height: 40vw; right: -10vw; top: 22vh; background: radial-gradient(circle, #d8ccff, transparent 65%); animation-delay: -7s; }
+        .ambient i:nth-child(3) { width: 38vw; height: 38vw; left: 18vw; bottom: -14vw; background: radial-gradient(circle, #bdeee9, transparent 65%); animation-delay: -14s; }
+
+        @keyframes drift {
+            to { transform: translate(6vw, 4vh) scale(1.12); }
+        }
+
+        main-sections, nav, section, footer { position: relative; z-index: 1; }
+
+        /* ---- nav ---- */
         nav {
-            background: var(--light);
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: rgba(255,255,255,.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.1rem 0;
+            box-shadow: 0 1px 0 rgba(15,23,42,.06);
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: padding .25s;
         }
+
+        nav.scrolled { padding: .65rem 0; box-shadow: 0 6px 24px rgba(15,23,42,.08); }
 
         nav .container {
             max-width: 1200px;
@@ -51,104 +98,179 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -.02em;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
+        .logo span { color: var(--primary); }
+
+        nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+
+        nav a { color: var(--dark); text-decoration: none; font-weight: 500; font-size: .95rem; transition: color .2s; }
+        nav a:hover { color: var(--primary); }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: .55rem 1.2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background .2s, transform .15s;
         }
 
-        nav a {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+        .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        /* Hero Section */
+        /* ---- hero ---- */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            background: radial-gradient(120% 90% at 70% -10%, #16305f 0%, var(--navy2) 45%, var(--navy) 100%);
             color: white;
-            padding: 6rem 2rem;
-            text-align: center;
+            padding: 7.5rem 2rem 7rem;
+            overflow: hidden;
         }
+
+        .hero .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: .5;
+            animation: heroDrift 16s ease-in-out infinite alternate;
+        }
+
+        .blob.b1 { width: 520px; height: 520px; left: -140px; top: -120px; background: radial-gradient(circle, #2563eb99, transparent 65%); }
+        .blob.b2 { width: 460px; height: 460px; right: -120px; top: 40px; background: radial-gradient(circle, #7c3aed88, transparent 65%); animation-delay: -5s; }
+        .blob.b3 { width: 420px; height: 420px; left: 32%; bottom: -220px; background: radial-gradient(circle, #0ea5a477, transparent 65%); animation-delay: -10s; }
+
+        @keyframes heroDrift {
+            to { transform: translate(60px, 30px) scale(1.15); }
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1.4px);
+            background-size: 34px 34px;
+            mask-image: linear-gradient(180deg, rgba(0,0,0,.5), transparent 75%);
+            -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.5), transparent 75%);
+            pointer-events: none;
+        }
+
+        .hero-content { position: relative; max-width: 900px; margin: 0 auto; text-align: center; }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid rgba(255,255,255,.22);
+            background: rgba(255,255,255,.07);
+            backdrop-filter: blur(6px);
+            border-radius: 999px;
+            padding: .45rem 1.1rem;
+            font-size: .85rem;
+            font-weight: 600;
+            color: #c7d6f2;
+            margin-bottom: 1.6rem;
+        }
+
+        .hero-kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
         .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            font-size: clamp(2.4rem, 5.4vw, 3.9rem);
+            font-weight: 800;
+            letter-spacing: -.03em;
+            line-height: 1.08;
+            margin-bottom: 1.4rem;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(100deg, #7ea6ff, #b79bff 55%, #6fd6d0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.2rem;
+            margin: 0 auto 2.4rem;
+            color: #b9c6dd;
+            max-width: 640px;
+            line-height: 1.65;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         .btn {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: .95rem 2.1rem;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all .25s;
         }
 
         .btn-primary {
-            background: white;
-            color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary {
-            background: transparent;
+            background: var(--primary);
             color: white;
-            border: 2px solid white;
+            box-shadow: 0 10px 30px rgba(37,99,235,.45);
         }
 
-        .btn-secondary:hover {
-            background: white;
+        .btn-primary:hover { transform: translateY(-2px); background: #3b76f6; box-shadow: 0 16px 40px rgba(37,99,235,.55); }
+
+        .btn-ghost {
+            background: rgba(255,255,255,.08);
+            color: white;
+            border: 1px solid rgba(255,255,255,.28);
+            backdrop-filter: blur(6px);
+        }
+
+        .btn-ghost:hover { background: rgba(255,255,255,.16); transform: translateY(-2px); }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: .8rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .hero-stat {
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(255,255,255,.06);
+            backdrop-filter: blur(6px);
+            border-radius: 14px;
+            padding: .8rem 1.4rem;
+            font-size: .9rem;
+            color: #c7d6f2;
+        }
+
+        .hero-stat b { display: block; font-family: var(--display); font-size: 1.35rem; color: white; }
+
+        /* ---- shared ---- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        section { padding: 5.5rem 2rem; }
+
+        .section-kicker {
+            display: block;
+            text-align: center;
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
             color: var(--primary);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 5rem 2rem;
+            margin-bottom: .8rem;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -.02em;
             text-align: center;
             margin-bottom: 1rem;
             color: var(--gray-900);
@@ -156,450 +278,509 @@
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--gray-600);
-            max-width: 700px;
-            margin: 0 auto 3rem;
+            max-width: 680px;
+            margin: 0 auto 3.2rem;
         }
 
-        /* Problem/Solution Section */
-        .problems {
-            background: var(--gray-50);
-        }
+        /* ---- reveal ---- */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+        .reveal.in { opacity: 1; transform: none; }
 
+        /* ---- problems ---- */
         .problems-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.4rem;
         }
 
         .problem-card {
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            text-align: center;
+            padding: 1.8rem;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 1.1rem;
+            align-items: flex-start;
+            transition: transform .25s, box-shadow .25s;
         }
 
-        .problem-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .problem-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+        .picon {
+            flex: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(140deg, #e5edff, #f0e9ff);
+            color: var(--primary);
         }
 
-        .problem-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
-        }
+        .picon svg { width: 24px; height: 24px; }
 
-        .problem-card p {
-            color: var(--gray-600);
-            line-height: 1.7;
-        }
+        .problem-card h3 { font-size: 1.05rem; margin-bottom: .4rem; color: var(--gray-900); }
+        .problem-card p { color: var(--gray-600); font-size: .93rem; line-height: 1.65; }
 
-        .checkmark {
-            color: var(--accent);
-            font-weight: bold;
-        }
+        /* ---- services ---- */
+        .services { background: transparent; }
 
-        /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
         }
 
         .service-card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary);
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform .3s, box-shadow .3s;
         }
 
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+
+        .service-photo {
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            position: relative;
         }
 
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+        .service-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
+            transition: transform .6s cubic-bezier(.2,.7,.3,1);
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
+        .service-card:hover .service-photo img { transform: scale(1.07); }
+
+        .service-photo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11,17,32,0) 55%, rgba(11,17,32,.45));
         }
 
-        .service-card p {
-            color: var(--gray-600);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
+        .service-body { padding: 1.7rem 1.7rem 1.9rem; display: flex; flex-direction: column; flex: 1; }
 
-        .service-benefits {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
+        .service-body h3 { font-size: 1.25rem; margin-bottom: .6rem; color: var(--gray-900); }
+        .service-body > p { color: var(--gray-600); font-size: .95rem; line-height: 1.7; margin-bottom: 1rem; }
+
+        .service-benefits { list-style: none; margin-top: auto; }
 
         .service-benefits li {
-            padding: 0.6rem 0;
-            padding-left: 2rem;
+            padding: .34rem 0 .34rem 1.7rem;
             position: relative;
             color: var(--gray-600);
+            font-size: .92rem;
         }
 
         .service-benefits li::before {
-            content: "✓";
+            content: "";
             position: absolute;
             left: 0;
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.2rem;
+            top: .62rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #d9f5ec url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23059669" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M20 6 9 17l-5-5"/%3E%3C/svg%3E') center/9px no-repeat;
         }
 
-        /* Benefits Section */
+        /* ---- results band ---- */
         .benefits {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: radial-gradient(110% 130% at 30% -20%, #16305f 0%, var(--navy2) 50%, var(--navy) 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
         }
+
+        .benefits::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.1) 1px, transparent 1.4px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .benefits .section-title, .benefits .section-kicker { color: white; }
+        .benefits .section-kicker { color: #8fb0ef; }
+        .benefits .section-subtitle { color: #b9c6dd; }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.4rem;
+            position: relative;
         }
 
         .benefit-item {
             text-align: center;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.05);
+            backdrop-filter: blur(6px);
+            border-radius: 18px;
+            padding: 1.9rem 1rem 1.6rem;
         }
 
         .benefit-number {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-family: var(--display);
+            font-size: 2.7rem;
+            font-weight: 800;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: .3rem;
+            background: linear-gradient(100deg, #7ea6ff, #b79bff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-variant-numeric: tabular-nums;
         }
 
-        .benefit-label {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
+        .benefit-label { font-size: .95rem; color: #b9c6dd; }
 
-        /* Process Section */
+        /* ---- process ---- */
         .process-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.6rem;
+            position: relative;
         }
 
         .process-step {
             text-align: center;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 2rem 1.4rem 1.8rem;
+            box-shadow: var(--shadow);
+            transition: transform .25s, box-shadow .25s;
+        }
+
+        .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+        .step-number {
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(140deg, var(--primary), var(--violet));
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--display);
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0 auto 1.2rem;
+            box-shadow: 0 10px 24px rgba(37,99,235,.35);
+        }
+
+        .process-step h3 { font-size: 1.1rem; margin-bottom: .5rem; color: var(--gray-900); }
+        .process-step p { color: var(--gray-600); font-size: .92rem; }
+
+        /* ---- trust ---- */
+        .trust-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .trust-photo {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
             position: relative;
         }
 
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
+        .trust-photo img { width: 100%; display: block; }
+
+        .trust-photo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(37,99,235,.14), transparent 55%);
+        }
+
+        .trust h2 { text-align: left; margin-bottom: 1.2rem; }
+        .trust .section-kicker { text-align: left; }
+
+        .trust-list { list-style: none; display: grid; gap: 1rem; margin-top: 1.6rem; }
+
+        .trust-list li {
+            display: flex;
+            gap: .9rem;
+            align-items: flex-start;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 1rem 1.2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .ticon {
+            flex: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1.5rem;
-        }
-
-        .process-step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--gray-900);
-        }
-
-        .process-step p {
-            color: var(--gray-600);
-        }
-
-        /* Trust Section */
-        .trust {
-            background: var(--gray-50);
-            text-align: center;
-        }
-
-        .trust-badges {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .trust-badge {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .trust-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            background: linear-gradient(140deg, #e5edff, #e9fbf5);
             color: var(--primary);
         }
 
-        .trust-text {
-            font-weight: 600;
-            color: var(--gray-900);
-        }
+        .ticon svg { width: 20px; height: 20px; }
 
-        /* CTA Section */
+        .trust-list b { display: block; color: var(--gray-900); font-size: .98rem; }
+        .trust-list span { color: var(--gray-600); font-size: .88rem; }
+
+        /* ---- cta ---- */
         .cta {
-            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            background: linear-gradient(120deg, var(--primary-dark), var(--violet));
             color: white;
             text-align: center;
-            padding: 5rem 2rem;
+            padding: 5.5rem 2rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        .cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1.4px);
+            background-size: 30px 30px;
         }
 
-        .cta p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-        }
+        .cta h2 { position: relative; font-size: clamp(1.8rem, 3.4vw, 2.4rem); margin-bottom: 1.2rem; letter-spacing: -.02em; }
+        .cta p { position: relative; font-size: 1.15rem; margin-bottom: 2.2rem; opacity: .95; }
+        .cta .btn-primary { position: relative; background: white; color: var(--primary-dark); box-shadow: 0 14px 40px rgba(0,0,0,.3); }
+        .cta .btn-primary:hover { background: #f2f6ff; }
 
-        /* Testimonials */
-        .testimonials {
-            background: white;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial {
-            background: var(--gray-50);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--gray-900);
-        }
-
-        .testimonial-role {
-            color: var(--gray-600);
-            font-size: 0.95rem;
-        }
-
-        /* Footer */
+        /* ---- footer ---- */
         footer {
-            background: var(--gray-900);
-            color: white;
+            background: var(--navy);
+            color: #94a3b8;
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 3rem 2rem 2.4rem;
         }
 
-        footer p {
-            opacity: 0.8;
+        footer .flogo { font-family: var(--display); font-weight: 800; font-size: 1.2rem; color: white; margin-bottom: .6rem; }
+        footer .flogo span { color: #7ea6ff; }
+
+        .footer-links { margin: 1.2rem 0 .8rem; }
+
+        .footer-links a { color: #cbd5e1; text-decoration: none; margin: 0 1rem; font-size: .92rem; transition: color .2s; }
+        .footer-links a:hover { color: white; }
+
+        .credits { font-size: .72rem; color: #64748b; margin-top: 1rem; }
+        .credits a { color: #7ea6ff; text-decoration: none; }
+
+        @media (max-width: 860px) {
+            .trust-wrap { grid-template-columns: 1fr; }
+            nav ul li:not(:last-child) { display: none; }
         }
 
-        .footer-links {
-            margin-top: 1.5rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .section-title { font-size: 2rem; }
-            nav ul { display: none; }
-            .hero-buttons { flex-direction: column; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1 !important; transform: none !important; }
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+
+    <nav id="topnav">
         <div class="container">
-            <div class="logo">Dynexus Solutions</div>
+            <div class="logo">Dynexus<span>.</span></div>
             <ul>
                 <li><a href="#services">Services</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="#process">How It Works</a></li>
                 <li><a href="#benefits">Results</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a class="nav-cta" href="#contact">Get Started</a></li>
             </ul>
         </div>
     </nav>
 
     <section class="hero">
-        <h1>Technology That Works For Your Business</h1>
-        <p class="subtitle">Stop wrestling with IT problems. Get reliable, professional technology solutions that save time, reduce costs, and help you grow.</p>
-        <div class="hero-buttons">
-            <a href="#contact" class="btn btn-primary">Get a Free Consultation</a>
-            <a href="#services" class="btn btn-secondary">See How We Help</a>
+        <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+        <div class="hero-content" id="heroContent">
+            <div class="hero-kicker">Technology partner for growing businesses</div>
+            <h1>Technology That <em>Works For</em> Your Business</h1>
+            <p class="subtitle">Stop wrestling with IT problems. Get reliable, professional technology solutions that save time, reduce costs, and help you grow.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get a Free Consultation</a>
+                <a href="#services" class="btn btn-ghost">See How We Help</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><b>60–80%</b> lower IT costs</div>
+                <div class="hero-stat"><b>24/7</b> system uptime</div>
+                <div class="hero-stat"><b>10–20 hrs</b> saved weekly</div>
+            </div>
         </div>
     </section>
 
     <section class="problems">
         <div class="container">
-            <h2 class="section-title">Common Business Technology Challenges</h2>
-            <p class="section-subtitle">We help businesses solve these everyday problems</p>
+            <span class="section-kicker reveal">Sound familiar?</span>
+            <h2 class="section-title reveal">Common Business Technology Challenges</h2>
+            <p class="section-subtitle reveal">We help businesses solve these everyday problems</p>
 
             <div class="problems-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">💰</div>
-                    <h3>High IT Costs</h3>
-                    <p>Paying too much for outdated systems or expensive service contracts that don't deliver value.</p>
+                <div class="problem-card reveal">
+                    <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M14.8 8.6c-.5-.9-1.5-1.4-2.8-1.4-1.7 0-2.9.9-2.9 2.2 0 3 6 1.6 6 4.7 0 1.4-1.3 2.3-3.1 2.3-1.5 0-2.6-.6-3.1-1.6M12 5.6v1.6M12 16.8v1.6"/></svg></div>
+                    <div>
+                        <h3>High IT Costs</h3>
+                        <p>Paying too much for outdated systems or expensive service contracts that don't deliver value.</p>
+                    </div>
                 </div>
 
-                <div class="problem-card">
-                    <div class="problem-icon">⏰</div>
-                    <h3>Wasted Time</h3>
-                    <p>Your team spending hours on repetitive tasks that could be automated or systems that frequently break down.</p>
+                <div class="problem-card reveal">
+                    <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 6.8V12l3.4 2.2"/></svg></div>
+                    <div>
+                        <h3>Wasted Time</h3>
+                        <p>Your team spending hours on repetitive tasks that could be automated or systems that frequently break down.</p>
+                    </div>
                 </div>
 
-                <div class="problem-card">
-                    <div class="problem-icon">🔒</div>
-                    <h3>Security Concerns</h3>
-                    <p>Worried about data breaches, losing important files, or not having secure backups in place.</p>
+                <div class="problem-card reveal">
+                    <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 5.8v5.4c0 4.3 3 7.7 7 9 4-1.3 7-4.7 7-9V5.8Z"/><path d="M9.5 11.8 11.4 14l3.3-4"/></svg></div>
+                    <div>
+                        <h3>Security Concerns</h3>
+                        <p>Worried about data breaches, losing important files, or not having secure backups in place.</p>
+                    </div>
                 </div>
 
-                <div class="problem-card">
-                    <div class="problem-icon">📱</div>
-                    <h3>Remote Work Struggles</h3>
-                    <p>Difficulty accessing files, managing teams remotely, or keeping everyone connected and productive.</p>
+                <div class="problem-card reveal">
+                    <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="13" height="10" rx="1.6"/><path d="M6.5 19h6M9.5 15v4M19 8.5h1.4a.9.9 0 0 1 .9.9v8.4a.9.9 0 0 1-.9.9H17a.9.9 0 0 1-.9-.9V12"/></svg></div>
+                    <div>
+                        <h3>Remote Work Struggles</h3>
+                        <p>Difficulty accessing files, managing teams remotely, or keeping everyone connected and productive.</p>
+                    </div>
                 </div>
 
-                <div class="problem-card">
-                    <div class="problem-icon">📊</div>
-                    <h3>Lack of Visibility</h3>
-                    <p>Can't track performance, monitor systems, or make data-driven decisions without proper tools.</p>
+                <div class="problem-card reveal">
+                    <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-9M21 20H3.4"/></svg></div>
+                    <div>
+                        <h3>Lack of Visibility</h3>
+                        <p>Can't track performance, monitor systems, or make data-driven decisions without proper tools.</p>
+                    </div>
                 </div>
 
-                <div class="problem-card">
-                    <div class="problem-icon">🤝</div>
-                    <h3>No Reliable Support</h3>
-                    <p>Can't get help when you need it, or current IT provider doesn't understand your business needs.</p>
+                <div class="problem-card reveal">
+                    <div class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 12.6 5 16a2.3 2.3 0 0 0 3.2 3.2l3.4-3.4M15.6 11.4 19 8a2.3 2.3 0 0 0-3.2-3.2l-3.4 3.4M8.8 15.2l6.4-6.4"/></svg></div>
+                    <div>
+                        <h3>No Reliable Support</h3>
+                        <p>Can't get help when you need it, or current IT provider doesn't understand your business needs.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services">
+    <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">How We Help Your Business Succeed</h2>
-            <p class="section-subtitle">Practical technology solutions designed for growing businesses</p>
+            <span class="section-kicker reveal">What we do</span>
+            <h2 class="section-title reveal">How We Help Your Business Succeed</h2>
+            <p class="section-subtitle reveal">Practical technology solutions designed for growing businesses</p>
 
             <div class="services-grid">
 
-                <div class="service-card">
-                    <span class="service-icon">🖥️</span>
-                    <h3>Business Server Solutions</h3>
-                    <p>Reliable, secure servers that keep your business running 24/7. Access your files from anywhere, never worry about downtime.</p>
-                    <ul class="service-benefits">
-                        <li>Always-on file access for your team</li>
-                        <li>Automatic backups protect your data</li>
-                        <li>Work from anywhere securely</li>
-                        <li>Scale as your business grows</li>
-                    </ul>
+                <div class="service-card reveal">
+                    <div class="service-photo"><img src="img/svc-servers.webp" alt="Server racks in a data center" loading="lazy"></div>
+                    <div class="service-body">
+                        <h3>Business Server Solutions</h3>
+                        <p>Reliable, secure servers that keep your business running 24/7. Access your files from anywhere, never worry about downtime.</p>
+                        <ul class="service-benefits">
+                            <li>Always-on file access for your team</li>
+                            <li>Automatic backups protect your data</li>
+                            <li>Work from anywhere securely</li>
+                            <li>Scale as your business grows</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <span class="service-icon">☁️</span>
-                    <h3>Cloud Migration & Setup</h3>
-                    <p>Move away from expensive subscriptions. We build private cloud solutions that you own and control, saving thousands annually.</p>
-                    <ul class="service-benefits">
-                        <li>Cut subscription costs by 60-80%</li>
-                        <li>Complete control of your data</li>
-                        <li>No monthly vendor fees</li>
-                        <li>Better performance and reliability</li>
-                    </ul>
+                <div class="service-card reveal">
+                    <div class="service-photo"><img src="img/svc-cloud.webp" alt="Networked server cabling" loading="lazy"></div>
+                    <div class="service-body">
+                        <h3>Cloud Migration &amp; Setup</h3>
+                        <p>Move away from expensive subscriptions. We build private cloud solutions that you own and control, saving thousands annually.</p>
+                        <ul class="service-benefits">
+                            <li>Cut subscription costs by 60-80%</li>
+                            <li>Complete control of your data</li>
+                            <li>No monthly vendor fees</li>
+                            <li>Better performance and reliability</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <span class="service-icon">🤖</span>
-                    <h3>Workflow Automation</h3>
-                    <p>Stop manual data entry and repetitive tasks. We automate your processes so your team can focus on what matters.</p>
-                    <ul class="service-benefits">
-                        <li>Save 10-20 hours per week</li>
-                        <li>Eliminate human error</li>
-                        <li>Connect all your business tools</li>
-                        <li>Get real-time notifications</li>
-                    </ul>
+                <div class="service-card reveal">
+                    <div class="service-photo"><img src="img/svc-automation.webp" alt="Hands typing on a keyboard" loading="lazy"></div>
+                    <div class="service-body">
+                        <h3>Workflow Automation</h3>
+                        <p>Stop manual data entry and repetitive tasks. We automate your processes so your team can focus on what matters.</p>
+                        <ul class="service-benefits">
+                            <li>Save 10-20 hours per week</li>
+                            <li>Eliminate human error</li>
+                            <li>Connect all your business tools</li>
+                            <li>Get real-time notifications</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <span class="service-icon">🔐</span>
-                    <h3>Security & Backup Solutions</h3>
-                    <p>Protect your business from ransomware, data loss, and security breaches. Sleep better knowing your data is safe.</p>
-                    <ul class="service-benefits">
-                        <li>Automatic daily backups</li>
-                        <li>Ransomware protection</li>
-                        <li>Secure remote access</li>
-                        <li>Disaster recovery plan</li>
-                    </ul>
+                <div class="service-card reveal">
+                    <div class="service-photo"><img src="img/svc-backup.webp" alt="Hard drive storage close-up" loading="lazy"></div>
+                    <div class="service-body">
+                        <h3>Security &amp; Backup Solutions</h3>
+                        <p>Protect your business from ransomware, data loss, and security breaches. Sleep better knowing your data is safe.</p>
+                        <ul class="service-benefits">
+                            <li>Automatic daily backups</li>
+                            <li>Ransomware protection</li>
+                            <li>Secure remote access</li>
+                            <li>Disaster recovery plan</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <span class="service-icon">📊</span>
-                    <h3>Business Intelligence & Monitoring</h3>
-                    <p>See what's happening in your business in real-time. Make better decisions with clear dashboards and reports.</p>
-                    <ul class="service-benefits">
-                        <li>Real-time performance tracking</li>
-                        <li>Custom business dashboards</li>
-                        <li>Automated reporting</li>
-                        <li>Spot problems before they grow</li>
-                    </ul>
+                <div class="service-card reveal">
+                    <div class="service-photo"><img src="img/svc-monitoring.webp" alt="Workstation with monitoring screens" loading="lazy"></div>
+                    <div class="service-body">
+                        <h3>Business Intelligence &amp; Monitoring</h3>
+                        <p>See what's happening in your business in real-time. Make better decisions with clear dashboards and reports.</p>
+                        <ul class="service-benefits">
+                            <li>Real-time performance tracking</li>
+                            <li>Custom business dashboards</li>
+                            <li>Automated reporting</li>
+                            <li>Spot problems before they grow</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <span class="service-icon">🔧</span>
-                    <h3>IT Support & Maintenance</h3>
-                    <p>Reliable support when you need it. We keep your systems running smoothly so you can focus on your business.</p>
-                    <ul class="service-benefits">
-                        <li>Fast response times</li>
-                        <li>Proactive system monitoring</li>
-                        <li>Regular updates and maintenance</li>
-                        <li>No confusing tech jargon</li>
-                    </ul>
+                <div class="service-card reveal">
+                    <div class="service-photo"><img src="img/svc-support.webp" alt="Support specialist with headset" loading="lazy"></div>
+                    <div class="service-body">
+                        <h3>IT Support &amp; Maintenance</h3>
+                        <p>Reliable support when you need it. We keep your systems running smoothly so you can focus on your business.</p>
+                        <ul class="service-benefits">
+                            <li>Fast response times</li>
+                            <li>Proactive system monitoring</li>
+                            <li>Regular updates and maintenance</li>
+                            <li>No confusing tech jargon</li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -608,27 +789,28 @@
 
     <section id="benefits" class="benefits">
         <div class="container">
-            <h2 class="section-title">Real Results for Your Business</h2>
-            <p class="section-subtitle">What you can expect when working with us</p>
+            <span class="section-kicker reveal">The numbers</span>
+            <h2 class="section-title reveal">Real Results for Your Business</h2>
+            <p class="section-subtitle reveal">What you can expect when working with us</p>
 
             <div class="benefits-grid">
-                <div class="benefit-item">
-                    <span class="benefit-number">60-80%</span>
+                <div class="benefit-item reveal">
+                    <span class="benefit-number" data-count="80" data-prefix="60–" data-suffix="%">60–80%</span>
                     <span class="benefit-label">Lower IT Costs</span>
                 </div>
 
-                <div class="benefit-item">
+                <div class="benefit-item reveal">
                     <span class="benefit-number">24/7</span>
                     <span class="benefit-label">System Uptime</span>
                 </div>
 
-                <div class="benefit-item">
-                    <span class="benefit-number">10-20hrs</span>
+                <div class="benefit-item reveal">
+                    <span class="benefit-number" data-count="20" data-prefix="10–" data-suffix="hrs">10–20hrs</span>
                     <span class="benefit-label">Time Saved Weekly</span>
                 </div>
 
-                <div class="benefit-item">
-                    <span class="benefit-number">100%</span>
+                <div class="benefit-item reveal">
+                    <span class="benefit-number" data-count="100" data-suffix="%">100%</span>
                     <span class="benefit-label">Data Security</span>
                 </div>
             </div>
@@ -637,29 +819,30 @@
 
     <section id="process">
         <div class="container">
-            <h2 class="section-title">Simple, Straightforward Process</h2>
-            <p class="section-subtitle">Getting started is easy</p>
+            <span class="section-kicker reveal">Getting started</span>
+            <h2 class="section-title reveal">Simple, Straightforward Process</h2>
+            <p class="section-subtitle reveal">Getting started is easy</p>
 
             <div class="process-grid">
-                <div class="process-step">
+                <div class="process-step reveal">
                     <div class="step-number">1</div>
                     <h3>Free Consultation</h3>
                     <p>We discuss your business needs and current challenges. No pressure, no sales pitch.</p>
                 </div>
 
-                <div class="process-step">
+                <div class="process-step reveal">
                     <div class="step-number">2</div>
                     <h3>Custom Plan</h3>
                     <p>We create a clear plan tailored to your business, with transparent pricing and timelines.</p>
                 </div>
 
-                <div class="process-step">
+                <div class="process-step reveal">
                     <div class="step-number">3</div>
                     <h3>Implementation</h3>
                     <p>We handle everything with minimal disruption to your business. You stay in control.</p>
                 </div>
 
-                <div class="process-step">
+                <div class="process-step reveal">
                     <div class="step-number">4</div>
                     <h3>Ongoing Support</h3>
                     <p>We're here when you need us, with proactive monitoring and quick response times.</p>
@@ -669,59 +852,112 @@
     </section>
 
     <section class="trust">
-        <div class="container">
-            <h2 class="section-title">Why Businesses Trust Us</h2>
-
-            <div class="trust-badges">
-                <div class="trust-badge">
-                    <div class="trust-icon">✓</div>
-                    <div class="trust-text">Real Business Experience</div>
-                </div>
-
-                <div class="trust-badge">
-                    <div class="trust-icon">🛡️</div>
-                    <div class="trust-text">Security-First Approach</div>
-                </div>
-
-                <div class="trust-badge">
-                    <div class="trust-icon">💬</div>
-                    <div class="trust-text">Clear Communication</div>
-                </div>
-
-                <div class="trust-badge">
-                    <div class="trust-icon">⚡</div>
-                    <div class="trust-text">Fast Response Times</div>
-                </div>
-
-                <div class="trust-badge">
-                    <div class="trust-icon">💰</div>
-                    <div class="trust-text">Transparent Pricing</div>
-                </div>
+        <div class="container trust-wrap">
+            <div class="trust-photo reveal">
+                <img src="img/about-team.webp" alt="Team collaborating in an office" loading="lazy">
+            </div>
+            <div>
+                <span class="section-kicker reveal">Why Dynexus</span>
+                <h2 class="section-title reveal">Why Businesses Trust Us</h2>
+                <ul class="trust-list">
+                    <li class="reveal">
+                        <div class="ticon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+                        <div><b>Real Business Experience</b><span>Solutions grounded in how businesses actually operate day to day.</span></div>
+                    </li>
+                    <li class="reveal">
+                        <div class="ticon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 5.8v5.4c0 4.3 3 7.7 7 9 4-1.3 7-4.7 7-9V5.8Z"/></svg></div>
+                        <div><b>Security-First Approach</b><span>Every system designed with protection and recovery built in.</span></div>
+                    </li>
+                    <li class="reveal">
+                        <div class="ticon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.2-.6L3 21l1.7-5.8a8.4 8.4 0 1 1 16.3-3.7Z"/></svg></div>
+                        <div><b>Clear Communication</b><span>Plain-language answers and transparent pricing — no jargon.</span></div>
+                    </li>
+                    <li class="reveal">
+                        <div class="ticon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.8 13.2h6L11 22l8.2-11.2h-6Z"/></svg></div>
+                        <div><b>Fast Response Times</b><span>Quick turnaround when something needs attention — day or night.</span></div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
     <section id="contact" class="cta">
-        <div class="container">
-            <h2>Ready to Transform Your Business Technology?</h2>
-            <p>Let's discuss how we can help your business work smarter and grow faster.</p>
-            <a href="mailto:admin@dynexussolutions.com" class="btn btn-primary">Schedule Your Free Consultation</a>
-        </div>
+        <h2 class="reveal">Ready to Transform Your Business Technology?</h2>
+        <p class="reveal">Let's discuss how we can help your business work smarter and grow faster.</p>
+        <a href="mailto:admin@dynexussolutions.com" class="btn btn-primary reveal">Schedule Your Free Consultation</a>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Dynexus Solutions. All rights reserved.</p>
-            <p style="margin-top: 1rem;">Professional Technology Solutions for Growing Businesses</p>
-            <div class="footer-links">
-                <a href="mailto:admin@dynexussolutions.com">Email Us</a>
-                <a href="#services">Services</a>
-                <a href="portfolio.html">Portfolio</a>
-                <a href="#contact">Contact</a>
-            </div>
+        <div class="flogo">Dynexus<span>.</span></div>
+        <p>Professional Technology Solutions for Growing Businesses</p>
+        <div class="footer-links">
+            <a href="mailto:admin@dynexussolutions.com">Email Us</a>
+            <a href="#services">Services</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="#contact">Contact</a>
         </div>
+        <p>&copy; 2026 Dynexus Solutions. All rights reserved.</p>
+        <p class="credits">Photos CC-BY via <a href="https://openverse.org" rel="noopener">Openverse</a>: motleypixel, jurvetson, bigpresh, wwarby, Jon Rohan, ccnull.de, kevin dooley (Flickr)</p>
     </footer>
+
+<script>
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* nav shrink */
+window.addEventListener("scroll", () => {
+    document.getElementById("topnav").classList.toggle("scrolled", window.scrollY > 10);
+}, { passive: true });
+
+/* hero parallax drift */
+if (!REDUCED) {
+    const hc = document.getElementById("heroContent");
+    window.addEventListener("scroll", () => {
+        const y = window.scrollY;
+        if (y < 900) hc.style.transform = `translateY(${y * 0.18}px)`;
+    }, { passive: true });
+}
+
+/* reveal on scroll with stagger */
+const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+document.querySelectorAll(".reveal").forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 70 + "ms";
+    io.observe(el);
+});
+
+/* count-up stats */
+function countUp(el) {
+    const to = Number(el.dataset.count);
+    const prefix = el.dataset.prefix || "";
+    const suffix = el.dataset.suffix || "";
+    if (REDUCED) { el.textContent = prefix + to + suffix; return; }
+    const start = performance.now(), dur = 1400;
+    (function step(now) {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + Math.round(to * eased) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+    })(start);
+}
+
+const cio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            countUp(e.target);
+            cio.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.6 });
+
+document.querySelectorAll("[data-count]").forEach(el => cio.observe(el));
+</script>
 
 </body>
 </html>
-
